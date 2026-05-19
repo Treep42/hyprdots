@@ -1,0 +1,2 @@
+# hyprdots
+hyprland configuration
