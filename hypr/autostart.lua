@@ -13,4 +13,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("nm-online -q -s -x && nm-applet")
 	-- start hyprdynamicmonitors (it's dead after reboot sometimes...?)
 	hl.exec_cmd("systemctl --user start hyprdynamicmonitors.service")
+	-- caht programs
+	hl.exec_cmd("ferdium")
+	hl.exec_cmd("discord")
 end)

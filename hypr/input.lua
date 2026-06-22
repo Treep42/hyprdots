@@ -3,6 +3,10 @@ hl.config({
 		-- KEYBOARD
 		kb_layout = "de",
 		numlock_by_default = true,
+		kb_options = "caps:none",
+		-- repeating keypresses for held-down keys, set to -1 and -1 to disable (I'm looking at you, Genshin Impact!)
+		repeat_rate = 25,
+		repeat_delay = 600,
 		-- MOUSE
 		sensitivity = 0, -- -1.0 - 1.0, 0 means no modification
 		-- 0 : cursor movement won't change focus

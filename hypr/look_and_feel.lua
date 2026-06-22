@@ -12,7 +12,7 @@ hl.config({
 		-- Please see https://wiki.hypr.land/Configuring/Tearing/ before you turn this on
 		allow_tearing = false,
 
-		layout = "scrolling",
+		layout = "dwindle",
 
 		snap = {
 			enabled = true,

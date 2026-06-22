@@ -1,2 +1,2 @@
 # hyprdots
-hyprland configuration
+hyprland lua configuration

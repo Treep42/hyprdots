@@ -39,6 +39,24 @@ hl.bind(main .. " + X", function()
 		})
 	end
 end)
+-- toggle between dwindle and scrolling layout for current workspace
+hl.bind(main .. " + CTRL + X", function()
+	local workspace = hl.get_active_workspace()
+	if hl.get_active_special_workspace() then
+		workspace = hl.get_active_special_workspace()
+	end
+
+	local next_layout = "scrolling"
+	if workspace.tiled_layout == "scrolling" then
+		next_layout = "dwindle"
+	end
+
+	if workspace.special then
+		hl.workspace_rule({ workspace = tostring(workspace.name), layout = next_layout })
+	else
+		hl.workspace_rule({ workspace = tostring(workspace.id), layout = next_layout })
+	end
+end)
 
 -- noctalia shell specifics
 -- -- network panel
@@ -130,8 +148,8 @@ for i = 1, 10 do
 end
 
 -- move workspaces between monitors
-hl.bind(main .. " + ALT + H", hl.dsp.workspace.move({ monitor = "left" }))
-hl.bind(main .. " + ALT + L", hl.dsp.workspace.move({ monitor = "right" }))
+hl.bind(main .. " + ALT + H", hl.dsp.workspace.move({ monitor = "l" }))
+hl.bind(main .. " + ALT + L", hl.dsp.workspace.move({ monitor = "r" }))
 
 -- define special scratchpad workspace
 hl.bind(main .. " + minus", hl.dsp.workspace.toggle_special("magic"))
@@ -148,6 +166,10 @@ hl.bind(main .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(main .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- start resize mode submap
+-- hl.bind(main .. " + R", function()
+-- 	hl.dsp.submap("resize")
+-- 	noctaliaIpc('toast send \'{"title": "resizing", "duration": 60000}\'')
+-- end)
 hl.bind(main .. " + R", hl.dsp.submap("resize"))
 -- define submap "resize"
 hl.define_submap("resize", function()

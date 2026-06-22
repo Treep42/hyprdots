@@ -30,7 +30,7 @@ hl.window_rule({ match = { title = "^(.*)$" }, idle_inhibit = "fullscreen" })
 -- applications/windows to set float and center for:
 local floatCenterApps = {
 	{ class = "^(pavucontrol|org.pulseaudio.pavucontrol)$" },
-	{ class = "^(org.keepassxc.KeePassXC)$" },
+	--{ class = "^(org.keepassxc.KeePassXC)$" },
 	{ class = "([Dd]olphin)" },
 	{ class = "([Tt]hunar)" },
 	{ class = "(nm-applet)" },
@@ -60,6 +60,8 @@ local floatApps = {
 	{ class = "^(mpv)$" },
 	{ class = "([Ww]ebex)" },
 	{ class = "^([Ss]team)$", title = "negative:^([Ss]team)$" },
+	{ class = "^([Ss]team_app)(.*)" },
+	{ class = "^([Ss]team_app)(.*)", title = "^([Hh]o[Yy]o[Pp]lay)$" },
 	{ class = "^()$" },
 }
 
