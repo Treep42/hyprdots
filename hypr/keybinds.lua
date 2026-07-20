@@ -188,24 +188,24 @@ hl.define_submap("resize", function()
 end)
 -- end submap definition
 
--- VOLUME & BRIGHTNESS & MEDIA KEYS
------------------------------------
--- use e.g. wpctl set-volume/set-mute
--- use noctalia-shell for volume
-hl.bind("XF86AudioRaiseVolume", noctaliaIpc("volume increase"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", noctaliaIpc("volume decrease"), { locked = true, repeating = true })
-hl.bind("XF86AudioMute", noctaliaIpc("volume muteOutput"), { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute", noctaliaIpc("volume muteInput"), { locked = true, repeating = true })
--- BRIGHTNESS KEYS
--- use e.g. brightnessctl
--- use noctalia-shell for brightness
-hl.bind("XF86MonBrightnessUp", noctaliaIpc("brightness increase"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", noctaliaIpc("brightness decrease"), { locked = true, repeating = true })
--- MEDIA KEYS
--- use e.g. playerctl next/play-pause/previous
--- use noctalia-shell for media keys
-hl.bind("XF86AudioNext", noctaliaIpc("media next"), { locked = true })
-hl.bind("XF86AudioPause", noctaliaIpc("media playPause"), { locked = true })
-hl.bind("XF86AudioPlay", noctaliaIpc("media playPause"), { locked = true })
-hl.bind("XF86AudioStop", noctaliaIpc("media playPause"), { locked = true })
-hl.bind("XF86AudioPrev", noctaliaIpc("media previous"), { locked = true })
+-- -- VOLUME & BRIGHTNESS & MEDIA KEYS
+-- -----------------------------------
+-- -- use e.g. wpctl set-volume/set-mute
+-- -- use noctalia-shell for volume
+-- hl.bind("XF86AudioRaiseVolume", noctaliaIpc("volume increase"), { locked = true, repeating = true })
+-- hl.bind("XF86AudioLowerVolume", noctaliaIpc("volume decrease"), { locked = true, repeating = true })
+-- hl.bind("XF86AudioMute", noctaliaIpc("volume muteOutput"), { locked = true, repeating = true })
+-- hl.bind("XF86AudioMicMute", noctaliaIpc("volume muteInput"), { locked = true, repeating = true })
+-- -- BRIGHTNESS KEYS
+-- -- use e.g. brightnessctl
+-- -- use noctalia-shell for brightness
+-- hl.bind("XF86MonBrightnessUp", noctaliaIpc("brightness increase"), { locked = true, repeating = true })
+-- hl.bind("XF86MonBrightnessDown", noctaliaIpc("brightness decrease"), { locked = true, repeating = true })
+-- -- MEDIA KEYS
+-- -- use e.g. playerctl next/play-pause/previous
+-- -- use noctalia-shell for media keys
+-- hl.bind("XF86AudioNext", noctaliaIpc("media next"), { locked = true })
+-- hl.bind("XF86AudioPause", noctaliaIpc("media playPause"), { locked = true })
+-- hl.bind("XF86AudioPlay", noctaliaIpc("media playPause"), { locked = true })
+-- hl.bind("XF86AudioStop", noctaliaIpc("media playPause"), { locked = true })
+-- hl.bind("XF86AudioPrev", noctaliaIpc("media previous"), { locked = true })
