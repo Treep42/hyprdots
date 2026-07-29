@@ -44,6 +44,17 @@ hl.config({
 		},
 	},
 
+	group = {
+		groupbar = {
+			font_size = 14,
+			gradients = true,
+			indicator_gap = 0,
+			indicator_height = 0,
+			rounding = 0,
+			keep_upper_gap = false,
+		},
+	},
+
 	animations = {
 		enabled = true,
 	},

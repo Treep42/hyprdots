@@ -37,4 +37,22 @@ hl.config({
 			color = crust .. "ee",
 		},
 	},
+	group = {
+		col = {
+			border_active = { colors = { green .. "ee", mauve .. "ee" }, angle = 45 },
+			border_inactive = surface0 .. "aa",
+			border_locked_active = { colors = { maroon .. "ee", mauve .. "ee" }, angle = 45 },
+			border_locked_inactive = surface0 .. "aa",
+		},
+		groupbar = {
+			text_color = base,
+			text_color_inactive = text,
+			col = {
+				active = green .. "ee",
+				inactive = surface1 .. "ee",
+				locked_active = maroon .. "ee",
+				locked_inactive = surface1 .. "ee",
+			},
+		},
+	},
 })

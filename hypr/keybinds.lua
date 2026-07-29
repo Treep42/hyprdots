@@ -105,20 +105,23 @@ end
 bindArrowsHjkl(main, function(dir)
 	return hl.dsp.focus({ direction = dir })
 end)
+-- move focus within a group
+hl.bind(main .. " + Tab", hl.dsp.group.next())
+hl.bind(main .. " + SHIFT + Tab", hl.dsp.group.prev())
 
 -- move window in direction, non-group-aware
 bindArrowsHjkl(main .. " + SHIFT", function(dir)
-	return hl.dsp.window.move({ direction = dir })
+	return hl.dsp.window.move({ direction = dir, group_aware = true })
 end)
--- move window in a direction into a group, or create a group if none exists
-bindArrowsHjkl(main .. " + CONTROL", function(dir)
-	return hl.dsp.window.move({ into_or_create_group = dir })
-end)
+-- -- move window in a direction into a group, or create a group if none exists
+-- bindArrowsHjkl(main .. " + CONTROL", function(dir)
+-- 	return hl.dsp.window.move({ into_or_create_group = dir })
+-- end)
 
 -- toggle group state for active window
 hl.bind(main .. " + G", hl.dsp.group.toggle({ window = "activewindow" }))
--- move window out of group, directionless
-hl.bind(main .. " + SHIFT + G", hl.dsp.window.move({ out_of_group = true }))
+-- toggle group lock
+hl.bind(main .. " + SHIFT + G", hl.dsp.group.lock_active({ action = "toggle" }))
 
 -- swap active window with another one in direction
 bindArrowsHjkl(main .. " + CONTROL + SHIFT", function(dir)
