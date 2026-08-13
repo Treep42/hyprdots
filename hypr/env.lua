@@ -11,6 +11,7 @@ hl.env("SSH_ASKPASS", "/usr/bin/ksshaskpass")
 hl.env("SSH_ASKPASS_REQUIRE", "prefer")
 
 -- use fcitx as input module
+hl.env("GTK_IM_MODULE", "fcitx5")
 hl.env("QT_IM_MODULE", "fcitx5")
 hl.env("XMODIFIERS", "@im=fcitx5")
 

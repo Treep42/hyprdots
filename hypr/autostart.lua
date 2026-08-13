@@ -8,7 +8,7 @@ hl.on("hyprland.start", function()
 	-- udiskie auto-mounting manager
 	hl.exec_cmd("udiskie --automount --notify --tray")
 	-- japanese input with fcitx5 and mozc
-	hl.exec_cmd("fctix5")
+	hl.exec_cmd("fcitx5")
 	-- tray applet for network manager
 	hl.exec_cmd("nm-online -q -s -x && nm-applet")
 	-- start hyprdynamicmonitors (it's dead after reboot sometimes...?)

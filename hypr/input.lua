@@ -3,8 +3,9 @@ hl.config({
 		-- KEYBOARD
 		kb_layout = "de",
 		numlock_by_default = true,
+		-- disable caps lock
 		kb_options = "caps:none",
-		-- repeating keypresses for held-down keys, set to -1 and -1 to disable (I'm looking at you, Genshin Impact!)
+		-- repeating keypresses for held-down keys, set to -1 and -1 to disable
 		repeat_rate = 25,
 		repeat_delay = 600,
 		-- MOUSE
@@ -13,7 +14,9 @@ hl.config({
 		-- 1 : cursor movement will always change focus to window under cursor
 		-- 2 : cursor focus will be detached from keyboard focus. clicking on a window will move keyboard focus to that window
 		-- 3 : cursor focus will be completely separate from keyboard focus. clicking on a window will not change keyboard focus
-		follow_mouse = 2,
+		follow_mouse = 1,
+		follow_mouse_threshold = 30,
+		mouse_refocus = false,
 		-- control window focus behaviour when a window is closed
 		-- 0 : shift focus to next window candidate
 		-- 1 : shift focus to window under cursor
