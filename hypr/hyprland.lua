@@ -50,4 +50,5 @@ require("extras")
 
 -- import monitros last to enable them to override previous settings (e.g. disable animations when on battery power)
 -- MONITOR CONFIGURATION
-require("monitor")
+-- require("monitor")
+require("auto_monitors")
