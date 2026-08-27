@@ -93,7 +93,7 @@ hl.window_rule({ match = { class = "^([Dd]iscord)$" }, workspace = 1 })
 hl.window_rule({ match = { class = "^([Ww]ebex)$" }, workspace = 1 })
 
 hl.window_rule({
-	match = { class = "^(org.keepassxc.KeePassXC)$" },
+	match = { class = "^(org.keepassxc.KeePassXC|KeePassXC)$" },
 	workspace = "special:magic",
 	float = true,
 	center = true,
