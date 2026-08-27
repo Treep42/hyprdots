@@ -2,7 +2,7 @@ hl.on("hyprland.start", function()
 	-- idle lock manager
 	-- hl.exec_cmd("hypridle")
 	-- quickshell: noctalia-shell
-	hl.exec_cmd("qs -c noctalia-shell")
+	hl.exec_cmd("noctalia")
 	-- use kwallet for secrets
 	hl.exec_cmd("/usr/lib/pam_kwallet_init")
 	-- udiskie auto-mounting manager

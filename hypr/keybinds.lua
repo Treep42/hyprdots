@@ -8,24 +8,22 @@ local exec = function(cmd)
 end
 -- noctalia-shell ipc call function
 local noctaliaIpc = function(cmd)
-	return hl.dsp.exec_cmd("qs -c noctalia-shell ipc call " .. cmd)
+	return hl.dsp.exec_cmd("noctalia msg " .. cmd)
 end
-local ipc = "qs -c noctalia-shell ipc call"
 
 local terminal = "kitty"
 local fileManager = "thunar"
-local menu = ipc .. " launcher toggle"
 
 -- main utility binds, see https://wiki.hypr.land/Configuring/Binds/ for more
 hl.bind(main .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(main .. " + Q", hl.dsp.window.close())
-hl.bind(main .. " + P", noctaliaIpc("lockScreen lock"))
-hl.bind(main .. " + M", noctaliaIpc("sessionMenu toggle"))
+hl.bind(main .. " + P", noctaliaIpc("session lock"))
+hl.bind(main .. " + M", noctaliaIpc("panel-toggle session"))
 hl.bind(main .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(main .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(main .. " + F", hl.dsp.window.fullscreen({ action = "toggle", mode = "fullscreen" }))
 hl.bind(main .. " + SHIFT + F", hl.dsp.window.fullscreen({ action = "toggle", mode = "maximized" }))
-hl.bind(main .. " + D", noctaliaIpc("launcher toggle"))
+hl.bind(main .. " + D", noctaliaIpc("panel-toggle launcher"))
 -- toggle between dwindle and scrolling layout
 hl.bind(main .. " + X", function()
 	local layoutState = hl.get_config("general.layout")
@@ -60,11 +58,11 @@ end)
 
 -- noctalia shell specifics
 -- -- network panel
-hl.bind(main .. " +  F3", noctaliaIpc("network togglePanel"))
+-- hl.bind(main .. " +  F3", noctaliaIpc("network togglePanel"))
 -- -- volume panel
-hl.bind(main .. " +  F4", noctaliaIpc("volume togglePanel"))
+-- hl.bind(main .. " +  F4", noctaliaIpc("volume togglePanel"))
 -- -- media panel
-hl.bind(main .. " +  F5", noctaliaIpc("media toggle"))
+-- hl.bind(main .. " +  F5", noctaliaIpc("media toggle"))
 
 -- CUSTOM FEATURES
 ------------------
@@ -73,19 +71,22 @@ hl.bind(main .. " +  period", hl.dsp.exec_cmd(scriptsDir .. "/rofi-emoji-selecto
 -- krunner style internet search with prefix:
 -- hl.bind(ALT, F2, exec, $scriptsDir/rofi-krunner-search.sh)
 -- screenshotting an area
-hl.bind(
-	"Print",
-	hl.dsp.exec_cmd(
-		'REGION=$(slurp) || exit; grim -g "$REGION" - | wl-copy &&  wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png && notify-send "Screenshot-$(date +%F_%T).png " -t 4000 --icon accessories-screenshot'
-	)
-)
+hl.bind("Print", noctaliaIpc("screenshot-region"))
+-- hl.bind(
+-- 	"Print",
+-- 	hl.dsp.exec_cmd(
+-- 		'REGION=$(slurp) || exit; grim -g "$REGION" - | wl-copy &&  wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png && notify-send "Screenshot-$(date +%F_%T).png " -t 4000 --icon accessories-screenshot'
+-- 	)
+-- )
+
 -- screenshotting an entire screen
-hl.bind(
-	"SHIFT + Print",
-	hl.dsp.exec_cmd(
-		'grim - | wl-copy && wl-paste > ~/Pictures/screenshots/Screenshot-$(date +%F_%T).png && notify-send "Screenshot-$(date +%F_%T).png" -t 4000 --icon accessories-screenshot'
-	)
-)
+hl.bind("SHIFT + Print", noctaliaIpc("screenshot-fullscreen pick"))
+-- hl.bind(
+-- 	"SHIFT + Print",
+-- 	hl.dsp.exec_cmd(
+-- 		'grim - | wl-copy && wl-paste > ~/Pictures/screenshots/Screenshot-$(date +%F_%T).png && notify-send "Screenshot-$(date +%F_%T).png" -t 4000 --icon accessories-screenshot'
+-- 	)
+-- )
 
 -- MOVING FOCUS AND WINDOWS
 ---------------------------
@@ -109,14 +110,10 @@ end)
 hl.bind(main .. " + Tab", hl.dsp.group.next())
 hl.bind(main .. " + SHIFT + Tab", hl.dsp.group.prev())
 
--- move window in direction, non-group-aware
+-- move window in direction, group-aware
 bindArrowsHjkl(main .. " + SHIFT", function(dir)
 	return hl.dsp.window.move({ direction = dir, group_aware = true })
 end)
--- -- move window in a direction into a group, or create a group if none exists
--- bindArrowsHjkl(main .. " + CONTROL", function(dir)
--- 	return hl.dsp.window.move({ into_or_create_group = dir })
--- end)
 
 -- toggle group state for active window
 hl.bind(main .. " + G", hl.dsp.group.toggle({ window = "activewindow" }))
@@ -191,24 +188,24 @@ hl.define_submap("resize", function()
 end)
 -- end submap definition
 
--- -- VOLUME & BRIGHTNESS & MEDIA KEYS
--- -----------------------------------
--- -- use e.g. wpctl set-volume/set-mute
--- -- use noctalia-shell for volume
--- hl.bind("XF86AudioRaiseVolume", noctaliaIpc("volume increase"), { locked = true, repeating = true })
--- hl.bind("XF86AudioLowerVolume", noctaliaIpc("volume decrease"), { locked = true, repeating = true })
--- hl.bind("XF86AudioMute", noctaliaIpc("volume muteOutput"), { locked = true, repeating = true })
--- hl.bind("XF86AudioMicMute", noctaliaIpc("volume muteInput"), { locked = true, repeating = true })
--- -- BRIGHTNESS KEYS
--- -- use e.g. brightnessctl
--- -- use noctalia-shell for brightness
--- hl.bind("XF86MonBrightnessUp", noctaliaIpc("brightness increase"), { locked = true, repeating = true })
--- hl.bind("XF86MonBrightnessDown", noctaliaIpc("brightness decrease"), { locked = true, repeating = true })
--- -- MEDIA KEYS
--- -- use e.g. playerctl next/play-pause/previous
--- -- use noctalia-shell for media keys
--- hl.bind("XF86AudioNext", noctaliaIpc("media next"), { locked = true })
--- hl.bind("XF86AudioPause", noctaliaIpc("media playPause"), { locked = true })
--- hl.bind("XF86AudioPlay", noctaliaIpc("media playPause"), { locked = true })
--- hl.bind("XF86AudioStop", noctaliaIpc("media playPause"), { locked = true })
--- hl.bind("XF86AudioPrev", noctaliaIpc("media previous"), { locked = true })
+-- VOLUME & BRIGHTNESS & MEDIA KEYS
+-----------------------------------
+-- use e.g. wpctl set-volume/set-mute
+-- use noctalia-shell for volume
+hl.bind("XF86AudioRaiseVolume", noctaliaIpc("volume-up"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", noctaliaIpc("volume-down"), { locked = true, repeating = true })
+hl.bind("XF86AudioMute", noctaliaIpc("volume-mute"), { locked = true, repeating = true })
+hl.bind("XF86AudioMicMute", noctaliaIpc("volume muteInput"), { locked = true, repeating = true })
+-- BRIGHTNESS KEYS
+-- use e.g. brightnessctl
+-- use noctalia-shell for brightness
+hl.bind("XF86MonBrightnessUp", noctaliaIpc("brightness-up"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", noctaliaIpc("brightness-down"), { locked = true, repeating = true })
+-- MEDIA KEYS
+-- use e.g. playerctl next/play-pause/previous
+-- use noctalia-shell for media keys
+hl.bind("XF86AudioNext", noctaliaIpc("media next"), { locked = true })
+hl.bind("XF86AudioPause", noctaliaIpc("media toggle"), { locked = true })
+hl.bind("XF86AudioPlay", noctaliaIpc("media toggle"), { locked = true })
+hl.bind("XF86AudioStop", noctaliaIpc("media toggle"), { locked = true })
+hl.bind("XF86AudioPrev", noctaliaIpc("media previous"), { locked = true })

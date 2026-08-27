@@ -40,6 +40,8 @@ local floatCenterApps = {
 	{ class = "(org.inkscape.Inkscape)", title = "negative:^(.* - Inkscape)$" },
 	-- calibre dialog windows
 	{ class = "(calibre-gui)", title = "negative:^(calibre — )(.*)$" },
+	-- obsidian settings window
+	{ class = "(md.[Oo]bsidian)", title = "^([Ss]ettings )(.*)$" },
 }
 
 for _, appmatch in ipairs(floatCenterApps) do
@@ -89,6 +91,7 @@ hl.window_rule({ match = { class = "^([Ss]team)$" }, workspace = 6 })
 hl.window_rule({ match = { class = "^([Ff]erdium)$" }, workspace = 1 })
 hl.window_rule({ match = { class = "^([Dd]iscord)$" }, workspace = 1 })
 hl.window_rule({ match = { class = "^([Ww]ebex)$" }, workspace = 1 })
+
 hl.window_rule({
 	match = { class = "^(org.keepassxc.KeePassXC)$" },
 	workspace = "special:magic",
@@ -96,6 +99,7 @@ hl.window_rule({
 	center = true,
 	size = { "(monitor_w*0.7)", "(monitor_h*0.7)" },
 })
+
 hl.window_rule({
 	name = "make citrix behave",
 	match = { class = "^([Ww]fica)$" },
@@ -104,4 +108,10 @@ hl.window_rule({
 	fullscreen = true,
 	suppress_event = "fullscreen",
 	no_anim = true,
+})
+
+hl.window_rule({
+	match = { class = "dev.noctalia.Noctalia" },
+	float = true,
+	size = { 1080, 920 },
 })
