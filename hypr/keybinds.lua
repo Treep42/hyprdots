@@ -67,26 +67,27 @@ end)
 -- CUSTOM FEATURES
 ------------------
 -- select emoji to clipboard
-hl.bind(main .. " +  period", hl.dsp.exec_cmd(scriptsDir .. "/rofi-emoji-selector.sh"))
+-- hl.bind(main .. " + period", hl.dsp.exec_cmd(scriptsDir .. "/rofi-emoji-selector.sh"))
+hl.bind(main .. " + period", noctaliaIpc("panel-toggle launcher /emo "))
 -- krunner style internet search with prefix:
 -- hl.bind(ALT, F2, exec, $scriptsDir/rofi-krunner-search.sh)
 -- screenshotting an area
-hl.bind("Print", noctaliaIpc("screenshot-region"))
--- hl.bind(
--- 	"Print",
--- 	hl.dsp.exec_cmd(
--- 		'REGION=$(slurp) || exit; grim -g "$REGION" - | wl-copy &&  wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png && notify-send "Screenshot-$(date +%F_%T).png " -t 4000 --icon accessories-screenshot'
--- 	)
--- )
+-- hl.bind("Print", noctaliaIpc("screenshot-region"))
+hl.bind(
+	"Print",
+	hl.dsp.exec_cmd(
+		'REGION=$(slurp) || exit; grim -g "$REGION" - | wl-copy &&  wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png && notify-send "Screenshot-$(date +%F_%T).png " -t 4000 --icon accessories-screenshot'
+	)
+)
 
 -- screenshotting an entire screen
-hl.bind("SHIFT + Print", noctaliaIpc("screenshot-fullscreen pick"))
--- hl.bind(
--- 	"SHIFT + Print",
--- 	hl.dsp.exec_cmd(
--- 		'grim - | wl-copy && wl-paste > ~/Pictures/screenshots/Screenshot-$(date +%F_%T).png && notify-send "Screenshot-$(date +%F_%T).png" -t 4000 --icon accessories-screenshot'
--- 	)
--- )
+-- hl.bind("SHIFT + Print", noctaliaIpc("screenshot-fullscreen pick"))
+hl.bind(
+	"SHIFT + Print",
+	hl.dsp.exec_cmd(
+		'grim - | wl-copy && wl-paste > ~/Pictures/screenshots/Screenshot-$(date +%F_%T).png && notify-send "Screenshot-$(date +%F_%T).png" -t 4000 --icon accessories-screenshot'
+	)
+)
 
 -- MOVING FOCUS AND WINDOWS
 ---------------------------
