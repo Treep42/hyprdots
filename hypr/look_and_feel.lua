@@ -46,12 +46,20 @@ hl.config({
 
 	group = {
 		groupbar = {
+			height = 20,
 			font_size = 14,
-			gradients = true,
+			font_weight_active = "bold",
+			middle_click_close = false,
+			keep_upper_gap = false,
+			-- indicator == line/block below the gradients
 			indicator_gap = 0,
 			indicator_height = 0,
 			rounding = 0,
-			keep_upper_gap = false,
+			-- gradients == "tabs" of the groupbar
+			gradients = true,
+			gaps_in = 10,
+			gradient_round_only_edges = false,
+			gradient_rounding = 6,
 		},
 	},
 
